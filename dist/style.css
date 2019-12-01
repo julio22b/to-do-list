@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+.projects-container{
+    flex: 1;
+    position: relative; 
+    overflow-y: scroll; 
+}
+
+.projects-container h1{
+    padding: 1.3em;
+    text-align: center;
+    background-color: #226f54;;
+    letter-spacing: 3px;
+    border-bottom: 2px solid rgb(131, 131, 131);
+    color: white;
+}
+
+.projects-container #new-project{
+    position: absolute;
+    right: 0.7em;
+    top: 7em;
+    border: none;
+    background-color: white;
+    padding: 0.5em 1em;
+    border: 2px solid rgb(0, 0, 0);
+    color: black;
+    border-radius: 10%;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* .projects-container #new-project:hover{
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    transition: all 0.7s ease-in;
+} */
+
+.projects-container div{
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 1.8rem 0;
+    border-bottom: rgb(202, 202, 202) 1px solid;
+    margin: 0 1em;
+}
+
+.to-do-items{
+    flex: 2;
+}
+
+.to-do-items h1{
+    padding: 1.3em;
+    letter-spacing: 3px;
+    background-color: #ada8b6;
+    border-bottom: rgb(131, 131, 131) 1px solid;
+}
+
+.to-do-items .todo-head{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    background-color: #226f54;
+    color: white;
+}
+
+.to-do-items .todo-head div{
+    border-right: rgb(131, 131, 131) 1px solid;
+    padding: 1.5em 1em;
+    border-bottom: 1px solid rgb(131, 131, 131);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    flex: 1 1 0;
+}
+
+.project-items{
+    display: flex;
+}
+
+.project-items div{
+    flex: 1 1 0;
+    padding: 1em;
+    border-right: 1px solid rgb(131, 131, 131);
+    border-bottom: 1px solid rgb(131, 131, 131);
+}
