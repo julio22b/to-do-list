@@ -3,31 +3,31 @@ function createProjectBox(name){
     const projectBox = document.createElement('div')
     projectBox.textContent = `${name}`
     header.insertAdjacentElement('afterend', projectBox)
-    
+    projectBox.addEventListener
 }
 
+
 function createItems(title, description, dueDate, priority){
-    const todoHead = document.querySelector('.todo-head')
+    const todoBody = document.querySelector('.todo-body')
     const itemsContainer = document.createElement('div')
-    todoHead.insertAdjacentElement('afterend', itemsContainer)
-    
     itemsContainer.classList.add('project-items')
-    const titleBox = document.createElement('div')
-    titleBox.textContent = `${title}`
-    itemsContainer.insertAdjacentElement('afterbegin', titleBox)
-    itemsContainer.insertAdjacentElement('afterbegin', titleBox)
-
-    const descriptionBox = document.createElement('div')
-    descriptionBox.textContent = `${description}`
-    itemsContainer.insertAdjacentElement('afterbegin', descriptionBox)
-
-    const dueDateBox = document.createElement('div')
-    dueDateBox.textContent = `${dueDate}`
-    itemsContainer.insertAdjacentElement('afterbegin', dueDateBox)
-
+    todoBody.insertAdjacentElement('afterend', itemsContainer)
+    
     const priorityBox = document.createElement('div')
     priorityBox.textContent = `${priority}`
     itemsContainer.insertAdjacentElement('afterbegin', priorityBox)
+    
+    const dueDateBox = document.createElement('div')
+    dueDateBox.textContent = `${dueDate}`
+    itemsContainer.insertAdjacentElement('afterbegin', dueDateBox)
+    
+    const descriptionBox = document.createElement('div')
+    descriptionBox.textContent = `${description}`
+    itemsContainer.insertAdjacentElement('afterbegin', descriptionBox)
+    
+    const titleBox = document.createElement('div')
+    titleBox.textContent = `${title}`
+    itemsContainer.insertAdjacentElement('afterbegin', titleBox)
 
 }
 
