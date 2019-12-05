@@ -12,12 +12,21 @@
     <div class="blanket"></div>
     <div class="container">
         <div class="projects-container">
-            <h1 id="projects">Projects</h1>
-            <button id="new-project">New</button>
+            <div id="projects">
+                <h1 >Projects</h1>
+                <form class="my-form" action="#" id="project-form">
+                    <input name="new" type="text" placeholder="Enter name" id="name">
+                    <button id="new-project">New</button>
+                    <button id="clear-all">clear all</button>
+                </form>
+            </div>
+            <div id="actual-projects">
+
+            </div>
         </div>
-        <div class="to-do-items">
+        <div class="to-do-items" data-items-display-container>
             <div class="todo-head">
-                <h1>To Do List</h1>
+                <h1 data-project-title>To Do List</h1>
                 <button id="new-item">New To Do</button>
             </div>
             <div class="todo-body">
@@ -25,37 +34,34 @@
                 <div>Description</div>
                 <div>Due</div>
                 <div>Priority</div>
+                
             </div>
+            <div class="items">
+                    
+            </div>
+            
         </div>
-        <form class="my-form" action="#" id="project-form">
-            <h2>New Project</h2>
-            <label for="new">Name</label>
-            <input name="new" type="text" placeholder="Enter name" id="name">
-            <div>
-                <button class="submit">Submit</button>
-                <button class="cancel">Cancel</button>
-            </div>
-        </form>
+        
         <form action="#" class="my-form" id="items-form">
             <h2>Enter details</h2>
             <label for="title">Title</label>
-            <input type="text" name="title" placeholder="A name to your To Do">
+            <input id="title" type="text" name="title" placeholder="A name to your To Do">
             
             <label for="description">Description</label>
-            <input type="textarea" name="description" placeholder="A short description of your To Do">
+            <input id="desc" type="textarea" name="description" placeholder="A short description of your To Do">
 
             <label for="duedate">Due</label>
-            <input type="text" name="due" placeholder="When is it due?">
+            <input id="due" type="text" name="due" placeholder="When is it due?">
 
             <p>Choose a priority level</p>
             <div class="radio-buttons">
-                <input type="radio" name="priority" value="high" checked id="high">High <br>
+                <input type="radio" name="priority" value="High" checked id="high">High <br>
                 <label for="priority" id="high"></label>
 
-                <input type="radio" name="priority"  id="medium" value="medium">Medium <br>
+                <input type="radio" name="priority"  id="medium" value="Medium">Medium <br>
                 <label for="priority" id="medium"></label>
 
-                <input type="radio" name="priority" value="low" id="low">Low <br>
+                <input type="radio" name="priority" value="Low" id="low">Low <br>
                 <label for="priority" id="low"></label>
             </div>
         
