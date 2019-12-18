@@ -15,7 +15,6 @@ projectContainer.addEventListener('click', (e) => {
     if (e.target.tagName.toLowerCase() === 'div') {
         selectedProjectId = e.target.dataset.projectId
         console.log(selectedProjectId)
-        console.log(projectTitle)
         const children = projectContainer.childNodes
         for (let i = 0; i < children.length - 1; i++) {
             children[i].classList.remove('active-project')
@@ -45,7 +44,9 @@ newItem.addEventListener('click', (e) => {
     const itemDue = document.querySelector('#due')
     const itemPriority = document.querySelector('input[name=priority]:checked')
     const taskItem = new ToDo(itemTitle.value, itemDesc.value, itemDue.value, itemPriority.value)
-    projects.find(projectId)
+    const projectItemsToDisplayID = projects.find(project => project.id === selectedProjectId)
+    
+    console.log(projectItemsToDisplayID)
     createItems(itemTitle.value, itemDesc.value, itemDue.value, itemPriority.value)
     clearInput()
     hideFormAndBlanket('items-form')
