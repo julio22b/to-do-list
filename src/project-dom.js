@@ -37,6 +37,18 @@ function createItems(title, description, dueDate, priority){
     titleBox.classList.add('task')
     oneTaskContainer.insertAdjacentElement('afterbegin', titleBox)
 
+    const buttons = document.createElement('div')
+    buttons.style.display = 'flex'
+    const edit = document.createElement('button')
+    edit.textContent = 'E'
+    edit.classList.add('edit')
+    const remove = document.createElement('button')
+    remove.textContent = 'X'
+    remove.classList.add('remove')
+    buttons.classList.add('edit-remove-container')
+    buttons.appendChild(edit)
+    buttons.appendChild(remove)
+    oneTaskContainer.insertAdjacentElement('beforeend', buttons)
 }
 
 export {createProjectBox, createItems}

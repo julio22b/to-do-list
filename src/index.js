@@ -29,6 +29,14 @@ projectContainer.addEventListener('click', (e) => {
                 const selectedProjectIdHere = projects.find(project => project.id === selectedProjectId)
                 itemsDisplay.style.display = ''
                 projectTitle.innerHTML = `To Do's from <span>${selectedProjectIdHere.name}</span>`
+                const itemsContainer = document.querySelector('.items')
+                while(itemsContainer.firstChild){
+                    itemsContainer.removeChild(itemsContainer.firstChild)
+                }
+                selectedProjectIdHere.todos.forEach(todo => {
+                    console.log(todo)
+                    createItems(todo.title, todo.description, todo.dueDate, todo.priority)
+                });
             }
         }
     }
@@ -43,12 +51,17 @@ newItem.addEventListener('click', (e) => {
     const itemDesc = document.querySelector('#desc')
     const itemDue = document.querySelector('#due')
     const itemPriority = document.querySelector('input[name=priority]:checked')
+    if(!itemTitle.value || !itemDesc.value || !itemDue.value) {
+        return alert('Please fill all fields')
+    }
     const taskItem = new ToDo(itemTitle.value, itemDesc.value, itemDue.value, itemPriority.value)
-    const projectItemsToDisplayID = projects.find(project => project.id === selectedProjectId)
     
-    console.log(projectItemsToDisplayID)
+    const selectedProject = projects.find(project => project.id === selectedProjectId)
+    selectedProject.todos.push(taskItem)
+    console.log(selectedProject)
     createItems(itemTitle.value, itemDesc.value, itemDue.value, itemPriority.value)
     clearInput()
+    save()
     hideFormAndBlanket('items-form')
 })
 
@@ -121,9 +134,12 @@ console.log(projects)
 
 document.querySelector('#clear-all').addEventListener('click', () => {
     localStorage.clear()
+    projects = []
+    console.log(projects)
     while (document.querySelector('#actual-projects').hasChildNodes) {
         document.querySelector('#actual-projects').removeChild(document.querySelector('#actual-projects').firstChild)
     }
+   
 })
 
 

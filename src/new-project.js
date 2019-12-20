@@ -3,7 +3,7 @@ function Project(name){
 }
 
 function ToDo(title, description, dueDate, priority){
-    return {title: title, description: description, dueDate:dueDate, priority:priority}
+    return {id: Date.now().toString(), title: title, description: description, dueDate:dueDate, priority:priority, completed: false}
 }
 
 
