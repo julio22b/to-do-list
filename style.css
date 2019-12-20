@@ -278,3 +278,16 @@
     color: white;
     font-weight: bold;
 }
+
+.edit-remove-container{
+    justify-content: space-around;
+}
+
+.edit-remove-container .edit, .edit-remove-container .remove{
+    outline: none;
+    cursor: pointer;
+    color: black;
+    background: white;
+    border: none;
+    padding: 0.5em 1.5em;
+}
