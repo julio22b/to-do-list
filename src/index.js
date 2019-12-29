@@ -26,17 +26,20 @@ projectContainer.addEventListener('click', (e) => {
                 itemsDisplay.style.display = 'none'
             }
             else {
-                const selectedProjectIdHere = projects.find(project => project.id === selectedProjectId)
+                const selectedProject = projects.find(project => project.id === selectedProjectId)
                 itemsDisplay.style.display = ''
-                projectTitle.innerHTML = `To Do's from <span>${selectedProjectIdHere.name}</span>`
+                projectTitle.innerHTML = `To Do's from <span>${selectedProject.name}</span>`
                 const itemsContainer = document.querySelector('.items')
                 while(itemsContainer.firstChild){
                     itemsContainer.removeChild(itemsContainer.firstChild)
                 }
-                selectedProjectIdHere.todos.forEach(todo => {
+                selectedProject.todos.forEach(todo => {
                     console.log(todo)
-                    createItems(todo.title, todo.description, todo.dueDate, todo.priority)
+                    createItems(todo.title, todo.description, todo.dueDate, todo.priority, todo.id, todo.completed)
                 });
+                deleteTask()
+                editTask()
+                console.log(selectedProject.todos)
             }
         }
     }
@@ -58,15 +61,53 @@ newItem.addEventListener('click', (e) => {
     
     const selectedProject = projects.find(project => project.id === selectedProjectId)
     selectedProject.todos.push(taskItem)
-    console.log(selectedProject)
-    createItems(itemTitle.value, itemDesc.value, itemDue.value, itemPriority.value)
+    createItems(itemTitle.value, itemDesc.value, itemDue.value, itemPriority.value, taskItem.id, false)
     clearInput()
+    deleteTask()
+    editTask()
     save()
+
     hideFormAndBlanket('items-form')
 })
 
+function deleteTask(){
+    let deleteTaskButtons = document.getElementsByClassName('remove')
 
+    for(let i = 0; i < deleteTaskButtons.length; i++){
+        deleteTaskButtons[i].addEventListener('click', (e) => {
+            e.target.parentNode.parentNode.remove()
+            const selectedProject = projects.find(project => project.id === selectedProjectId)
+            const selectedTodo = selectedProject.todos.find(todo => todo.id === e.target.dataset.todoID)
+            for(let i = 0; i < selectedProject.todos.length; i++){
+                if(selectedProject.todos[i].id === selectedTodo.id){
 
+                    selectedProject.todos.splice(i, 1)
+                    save()
+                }
+            }
+        
+        })
+    }
+}
+
+function editTask() {
+    let editTaskButtons = document.getElementsByClassName('edit')
+
+    for (let i = 0; i < editTaskButtons.length; i++) {
+        editTaskButtons[i].addEventListener('click', (e) => {
+            e.target.style.color === 'gray' ? e.target.style.color = 'green' : e.target.style.color = 'gray'
+
+            const selectedProject = projects.find(project => project.id === selectedProjectId)
+            const selectedTodo = selectedProject.todos.find(todo => todo.id === e.target.dataset.todoID)
+            for(let i = 0; i < selectedProject.todos.length; i++){
+                if(selectedProject.todos[i].id === selectedTodo.id){
+                    selectedTodo.completed === false ? selectedTodo.completed = true : selectedTodo.completed = false
+                    save()
+                }
+            }
+        })
+    }
+}
 
 
 for (let i = 0; i < projects.length; i++) {
@@ -82,7 +123,6 @@ document.querySelector('#new-project').addEventListener('click', (e) => {
 
     projects.push(project)
     saveAndCreateProjectBox(inputName, project.id)
-    console.log(projects)
     clearInput()
 })
 
@@ -130,16 +170,16 @@ function hideFormAndBlanket(form) {
     clearInput()
 }
 
-console.log(projects)
 
 document.querySelector('#clear-all').addEventListener('click', () => {
     localStorage.clear()
     projects = []
-    console.log(projects)
     while (document.querySelector('#actual-projects').hasChildNodes) {
         document.querySelector('#actual-projects').removeChild(document.querySelector('#actual-projects').firstChild)
     }
-   
+    while (document.querySelector('.items').hasChildNodes){
+        document.querySelector('.items').removeChild(document.querySelector('.items').firstChild)
+    }
 })
 
 

@@ -39,24 +39,16 @@
 }
 
 .projects-container #new-project{
-    border: 2px solid rgb(0, 0, 0);
-    color: black;
+    border: none;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
     border-radius: 10%;
-    letter-spacing: 1px;
     font-weight: bold;
     cursor: pointer;
-    flex: 1;
     margin-left: 0.5em;
-    padding: 0.5em 0.3em;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    height: 10%;
 }
-
-/* .projects-container #new-project:hover{
-    color: white;
-    background-color: black;
-    border: 1px solid white;
-    transition: all 0.7s ease-in;
-} */
 
 .projects-container div{
     text-align: center;
@@ -186,7 +178,11 @@
 
 .my-form input:focus{
     outline: none;
+}
+
+#items-form input:focus{
     background-color: #ddd;
+    outline: none;
 }
 
 .my-form div{
@@ -286,8 +282,15 @@
 .edit-remove-container .edit, .edit-remove-container .remove{
     outline: none;
     cursor: pointer;
-    color: black;
-    background: white;
     border: none;
-    padding: 0.5em 1.5em;
+    background: white;
+}
+
+.edit-remove-container .edit span{
+    background: url(./img/edit.png);
+    background-size: contain;
+}
+
+.edit{
+    transition: all 0.5s ease;
 }

@@ -16,7 +16,7 @@
                 <h1 >Projects</h1>
                 <form class="my-form" action="#" id="project-form">
                     <input name="new" type="text" placeholder="Enter name" id="name">
-                    <button id="new-project">New</button>
+                    <button id="new-project">+</button>
                     <button id="clear-all">clear all</button>
                 </form>
             </div>
@@ -45,20 +45,20 @@
         <form action="#" class="my-form" id="items-form">
             <h2>Enter details</h2>
             <label for="title">Title</label>
-            <input id="title" type="text" name="title" placeholder="A name to your To Do">
+            <input id="title" type="text" name="title" >
             
             <label for="description">Description</label>
-            <input id="desc" type="textarea" name="description" placeholder="A short description of your To Do">
+            <input id="desc" type="textarea" name="description">
 
             <label for="duedate">Due</label>
-            <input id="due" type="text" name="due" placeholder="When is it due?">
+            <input id="due" type="text" name="due">
 
             <p>Choose a priority level</p>
             <div class="radio-buttons">
                 <input type="radio" name="priority" value="High" checked id="high">High <br>
                 <label for="priority" id="high"></label>
 
-                <input type="radio" name="priority"  id="medium" value="Medium">Medium <br>
+                <input type="radio" name="priority"  id="medium" value="Normal">Normal <br>
                 <label for="priority" id="medium"></label>
 
                 <input type="radio" name="priority" value="Low" id="low">Low <br>
