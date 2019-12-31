@@ -36,6 +36,7 @@
     letter-spacing: 3px;
     color: white;
     font-size: 3rem;
+    margin-bottom: 1em;
 }
 
 .projects-container #new-project{
@@ -62,17 +63,40 @@
 .projects-container #projects{
     margin: 0;
     padding: 1.5em;
-    background-color: #226f54;
-    border-bottom: 1px solid rgb(131, 131, 131);
+    background-color: #4864e6;
 
+}
+
+.project-name{
+    position: relative;
+}
+
+.project-name .delete-project{
+    border: none;
+    background: transparent;
+    color: rgb(214, 79, 79);
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    padding: 0 0.5em;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 #actual-projects{
     cursor: pointer;
 }
 
+[data-project-title]{
+    position: relative;
+}
+
 [data-project-title] span{
-    color: purple;
+    color: hsl(190, 69%, 90%);
+    text-shadow: 2px 2px 2px rgb(39, 39, 39);
+    font-size: 3rem;
+   
 }
 
 .to-do-items{
@@ -80,62 +104,105 @@
 }
 
 .to-do-items h1{
-    padding: 1.3em;
+    padding: 1.4em;
     letter-spacing: 3px;
-    border-bottom: rgb(131, 131, 131) 1px solid;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .to-do-items .todo-head{
     display: flex;
-    background-color: #ada8b6;
+    background-color: #4864e6;
     position: relative;
-    justify-content: space-around;
+    justify-content: start;
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    height: ;
 }
 
 .to-do-items .todo-head button {
     border: none;
-    background: white;
+    background: hsl(240, 100%, 98%);
     position: absolute;
-    top: 5em;
-    right: 10%;
-    padding: 0.7em 0.9em;
+    bottom: 10%;
+    right: 5%;
+    padding: 0.5em 0.7em;
     font-size: 1.2rem;
     letter-spacing: 2px;
-    border: 2px solid black;
     cursor: pointer;
     font-weight: bold;
     border-radius: 5px;
+}
+
+.to-do-items .todo-head button:hover{
+    background: hsl(190, 100%, 79%);
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 1px black;
+    transition: all 0.5s ease;
 }
 
 .to-do-items .todo-body{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: nowrap;
-    background-color: #4ad6a5ab;
-    color: white;
+    background-color: hsl(190, 100%, 79%);
+    color: rgb(41, 41, 41);
+    margin-bottom: 0.5em;
 }
 
 .to-do-items .todo-body div{
-    border-right: rgb(131, 131, 131) 1px solid;
     padding: 1.5em 1em;
-    border-bottom: 1px solid rgb(131, 131, 131);
     font-size: 1.2rem;
     letter-spacing: 1px;
     font-weight: bold;
-    flex: 1 1 0;
+    flex: 2 2 0;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.to-do-items .todo-body div:last-child{
+    flex: 1;
 }
 
 .items > div{
     display: flex;
+    position: relative;
+    transition: all 1s ease;
+    
+}
+
+.items > .completed:after{
+    position: absolute;
+    left: 0;
+    right: 100%;
+    top: 50%;
+    content: "";
+    width: 87%;
+    display: block;
+    outline: 1px solid #4864e6;
+    transition: right 2s linear;
+}
+
+.items .completed{
+    color: rgba(121, 121, 121, 0.5);
+}
+
+.items .completed .edit{
+    transform: scale(1.4);
+    transition: transform 0.3s ease;
+
 }
 
 .items > div > div{
-    flex: 1 1 0;
-    border-bottom: 1px solid rgb(131, 131, 131);
-    border-right: 1px solid rgb(131, 131, 131);
+    flex: 2 2 0;
     padding: 1em;
     font-size: 1.2rem;
+    background-color: hsl(240, 100%, 98%);
+    margin: 0.5em 0;
+    text-align: center;
+}
+
+.items > div > div:last-child{
+    flex: 1;
 }
 
 
@@ -161,7 +228,7 @@
 .my-form h2{
     padding: 1.5em;
     border-bottom: #f1f1f1 2px solid;
-    color: #226f54;
+    color: #4864e6;
 }
 
 .my-form label, #items-form p{
@@ -219,7 +286,7 @@
 }
 
 .my-form .submit:hover{
-    background-color: #2c9671;
+    background-color: #4864e6;
 }
 
 .my-form .cancel:hover{
@@ -270,20 +337,28 @@
 
 .active-project{
     transform: scale(1.1);
-    background-color: #2c9671;
+    background-color: #4864e6;
     color: white;
     font-weight: bold;
 }
 
 .edit-remove-container{
     justify-content: space-around;
+    z-index: 10;
 }
 
 .edit-remove-container .edit, .edit-remove-container .remove{
     outline: none;
     cursor: pointer;
     border: none;
-    background: white;
+    background-color: hsl(211, 10%, 95%);
+    width: 40%;
+    font-size: 1.4em;
+}
+
+.edit-remove-container .remove{
+    color: rgb(214, 79, 79);
+    font-weight: bold;
 }
 
 .edit-remove-container .edit span{
@@ -293,4 +368,5 @@
 
 .edit{
     transition: all 0.5s ease;
+
 }
