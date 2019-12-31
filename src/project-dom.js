@@ -4,10 +4,16 @@ function createProjectBox(name, idOfProject){
     const container = document.querySelector('#actual-projects')
     const projectBox = document.createElement('div')
     projectBox.classList.add('project-name')
-    projectBox.textContent = `${name}`
-    projectBox.dataset.projectId = `${idOfProject}`
+    projectBox.textContent = name
+    projectBox.dataset.projectId = idOfProject
    
     container.insertAdjacentElement('afterbegin', projectBox)
+
+    const deleteButton = document.createElement('button')
+    deleteButton.textContent = 'x'
+    deleteButton.classList.add('delete-project')
+    deleteButton.dataset.projectId = idOfProject
+    projectBox.insertAdjacentElement('beforeend', deleteButton)
 
 }
 
@@ -20,7 +26,8 @@ function createItems(title, description, dueDate, priority, idOfTodo, completed)
     const priorityBox = document.createElement('div')
     priorityBox.textContent = `${priority}`
     if(priority === 'High'){
-        priorityBox.style.color = 'red'
+        priorityBox.style.color = `rgb(214,79,79)`
+        priorityBox.style.fontWeight = 'bold'
     } else if(priority === 'Normal'){
         priorityBox.style.color = 'black'
     } else {
@@ -63,6 +70,12 @@ function createItems(title, description, dueDate, priority, idOfTodo, completed)
     buttons.appendChild(edit)
     buttons.appendChild(remove)
     oneTaskContainer.insertAdjacentElement('beforeend', buttons)
+
+    if(completed === true){
+        oneTaskContainer.classList.add('completed')
+    }else if(completed === false){
+        oneTaskContainer.classList.remove('completed')
+    }
 }
 
 export {createProjectBox, createItems}

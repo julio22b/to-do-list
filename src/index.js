@@ -7,8 +7,13 @@ const LOCAL_STORAGE_SELECTED_PROJECT_ID = 'task.selectedProjectId'
 const itemsDisplay = document.querySelector('[data-items-display-container]')
 const projectTitle = document.querySelector('[data-project-title]')
 const itemsContainer = document.querySelector('.items')
+const defaultProject = new Project('My Project')
+const sampleTodo = new ToDo('Sample', 'Sample', 'Sample', 'Low')
 let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []
 let selectedProjectId = localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_ID)
+
+defaultProject.todos.push(sampleTodo)
+projects.push(defaultProject)
 
 const projectContainer = document.querySelector('#actual-projects')
 projectContainer.addEventListener('click', (e) => {
@@ -28,17 +33,15 @@ projectContainer.addEventListener('click', (e) => {
             else {
                 const selectedProject = projects.find(project => project.id === selectedProjectId)
                 itemsDisplay.style.display = ''
-                projectTitle.innerHTML = `To Do's from <span>${selectedProject.name}</span>`
+                projectTitle.innerHTML = `To Do's from <span> ${selectedProject.name}</span>`
                 const itemsContainer = document.querySelector('.items')
-                while(itemsContainer.firstChild){
+                while (itemsContainer.firstChild) {
                     itemsContainer.removeChild(itemsContainer.firstChild)
                 }
-                selectedProject.todos.forEach(todo => {
-                    console.log(todo)
-                    createItems(todo.title, todo.description, todo.dueDate, todo.priority, todo.id, todo.completed)
-                });
+                renderTodos(selectedProject)
                 deleteTask()
-                editTask()
+                completeTask()
+                deleteProjectButton()
                 console.log(selectedProject.todos)
             }
         }
@@ -54,56 +57,77 @@ newItem.addEventListener('click', (e) => {
     const itemDesc = document.querySelector('#desc')
     const itemDue = document.querySelector('#due')
     const itemPriority = document.querySelector('input[name=priority]:checked')
-    if(!itemTitle.value || !itemDesc.value || !itemDue.value) {
+    if (!itemTitle.value || !itemDesc.value || !itemDue.value) {
         return alert('Please fill all fields')
     }
     const taskItem = new ToDo(itemTitle.value, itemDesc.value, itemDue.value, itemPriority.value)
-    
+
     const selectedProject = projects.find(project => project.id === selectedProjectId)
     selectedProject.todos.push(taskItem)
     createItems(itemTitle.value, itemDesc.value, itemDue.value, itemPriority.value, taskItem.id, false)
     clearInput()
     deleteTask()
-    editTask()
+    completeTask()
     save()
 
     hideFormAndBlanket('items-form')
 })
 
-function deleteTask(){
+function deleteTask() {
     let deleteTaskButtons = document.getElementsByClassName('remove')
 
-    for(let i = 0; i < deleteTaskButtons.length; i++){
+    for (let i = 0; i < deleteTaskButtons.length; i++) {
         deleteTaskButtons[i].addEventListener('click', (e) => {
             e.target.parentNode.parentNode.remove()
             const selectedProject = projects.find(project => project.id === selectedProjectId)
             const selectedTodo = selectedProject.todos.find(todo => todo.id === e.target.dataset.todoID)
-            for(let i = 0; i < selectedProject.todos.length; i++){
-                if(selectedProject.todos[i].id === selectedTodo.id){
+            for (let i = 0; i < selectedProject.todos.length; i++) {
+                if (selectedProject.todos[i].id === selectedTodo.id) {
 
                     selectedProject.todos.splice(i, 1)
                     save()
                 }
             }
-        
+
         })
     }
 }
 
-function editTask() {
-    let editTaskButtons = document.getElementsByClassName('edit')
+function completeTask() {
+    let completeTaskButtons = document.getElementsByClassName('edit')
 
-    for (let i = 0; i < editTaskButtons.length; i++) {
-        editTaskButtons[i].addEventListener('click', (e) => {
+    for (let i = 0; i < completeTaskButtons.length; i++) {
+        completeTaskButtons[i].addEventListener('click', (e) => {
             e.target.style.color === 'gray' ? e.target.style.color = 'green' : e.target.style.color = 'gray'
 
             const selectedProject = projects.find(project => project.id === selectedProjectId)
             const selectedTodo = selectedProject.todos.find(todo => todo.id === e.target.dataset.todoID)
-            for(let i = 0; i < selectedProject.todos.length; i++){
-                if(selectedProject.todos[i].id === selectedTodo.id){
+            for (let i = 0; i < selectedProject.todos.length; i++) {
+                if (selectedProject.todos[i].id === selectedTodo.id) {
                     selectedTodo.completed === false ? selectedTodo.completed = true : selectedTodo.completed = false
                     save()
+                    renderTodos(selectedProject)
                 }
+            }
+        })
+    }
+}
+
+function deleteProjectButton() {
+    const deleteProjectButtons = document.getElementsByClassName('delete-project')
+    for (let i = 0; i < deleteProjectButtons.length; i++) {
+        deleteProjectButtons[i].addEventListener('click', (e) => {
+            e.target.parentNode.remove()
+            const selectedProject = projects.find(project => project.id === e.target.dataset.projectId)
+            for (let i = 0; i < projects.length; i++) {
+                if (projects[i] === selectedProject) {
+                    projects.splice(i, 1)
+                    save()
+                }
+            }
+            selectedProject ? projectTitle.innerHTML = `To Do List <span> </span>` : projectTitle.innerHTML = `To Do's from <span> ${selectedProject.name}</span>`
+            while (document.querySelector('.items').hasChildNodes) {
+                document.querySelector('.items').removeChild(document.querySelector('.items').firstChild)
             }
         })
     }
@@ -124,8 +148,21 @@ document.querySelector('#new-project').addEventListener('click', (e) => {
     projects.push(project)
     saveAndCreateProjectBox(inputName, project.id)
     clearInput()
+    deleteProjectButton()
 })
 
+function renderTodos(project) {
+    const itemsContainer = document.querySelector('.items')
+    while (itemsContainer.firstChild) {
+        itemsContainer.removeChild(itemsContainer.firstChild)
+    }
+
+    project.todos.forEach(todo => {
+        createItems(todo.title, todo.description, todo.dueDate, todo.priority, todo.id, todo.completed)
+    });
+    deleteTask()
+    completeTask()
+}
 
 function save() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(projects))
@@ -170,17 +207,8 @@ function hideFormAndBlanket(form) {
     clearInput()
 }
 
-
-document.querySelector('#clear-all').addEventListener('click', () => {
-    localStorage.clear()
-    projects = []
-    while (document.querySelector('#actual-projects').hasChildNodes) {
-        document.querySelector('#actual-projects').removeChild(document.querySelector('#actual-projects').firstChild)
-    }
-    while (document.querySelector('.items').hasChildNodes){
-        document.querySelector('.items').removeChild(document.querySelector('.items').firstChild)
-    }
-})
+deleteProjectButton()
+console.log(projects)
 
 
 export { projects, selectedProjectId, itemsDisplay, projectTitle, itemsContainer }
