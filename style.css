@@ -96,11 +96,11 @@
     color: hsl(190, 69%, 90%);
     text-shadow: 2px 2px 2px rgb(39, 39, 39);
     font-size: 3rem;
-   
 }
 
 .to-do-items{
     flex: 2;
+    max-width: 66.6%;
 }
 
 .to-do-items h1{
@@ -116,7 +116,6 @@
     justify-content: start;
     color: hsl(0, 0%, 100%);
     font-weight: bold;
-    height: ;
 }
 
 .to-do-items .todo-head button {
@@ -166,24 +165,26 @@
 .items > div{
     display: flex;
     position: relative;
-    transition: all 1s ease;
-    
+    background: hsl(240, 100%, 98%);
+    margin: 1em 0;
 }
 
 .items > .completed:after{
     position: absolute;
     left: 0;
-    right: 100%;
     top: 50%;
     content: "";
     width: 87%;
     display: block;
     outline: 1px solid #4864e6;
-    transition: right 2s linear;
 }
+
+
 
 .items .completed{
     color: rgba(121, 121, 121, 0.5);
+    transition: right 2s linear;
+
 }
 
 .items .completed .edit{
@@ -196,9 +197,10 @@
     flex: 2 2 0;
     padding: 1em;
     font-size: 1.2rem;
-    background-color: hsl(240, 100%, 98%);
-    margin: 0.5em 0;
-    text-align: center;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .items > div > div:last-child{
@@ -344,14 +346,13 @@
 
 .edit-remove-container{
     justify-content: space-around;
-    z-index: 10;
 }
 
 .edit-remove-container .edit, .edit-remove-container .remove{
     outline: none;
     cursor: pointer;
     border: none;
-    background-color: hsl(211, 10%, 95%);
+    background-color: hsl(240, 100%, 98%);
     width: 40%;
     font-size: 1.4em;
 }
@@ -359,6 +360,7 @@
 .edit-remove-container .remove{
     color: rgb(214, 79, 79);
     font-weight: bold;
+    font-size: 1.2em;
 }
 
 .edit-remove-container .edit span{
@@ -369,4 +371,8 @@
 .edit{
     transition: all 0.5s ease;
 
+}
+
+.task desc{
+    max-height: 20vh;
 }
