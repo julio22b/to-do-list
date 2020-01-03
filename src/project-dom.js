@@ -6,7 +6,7 @@ function createProjectBox(name, idOfProject){
     projectBox.classList.add('project-name')
     projectBox.textContent = name
     projectBox.dataset.projectId = idOfProject
-   
+
     container.insertAdjacentElement('afterbegin', projectBox)
 
     const deleteButton = document.createElement('button')
