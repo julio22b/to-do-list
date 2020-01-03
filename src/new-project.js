@@ -1,14 +1,14 @@
 function Project(name) {
-  return { id: Date.now().toString(), name: name, todos: [] };
+  return { id: Date.now().toString(), name, todos: [] };
 }
 
 function ToDo(title, description, dueDate, priority) {
   return {
     id: Date.now().toString(),
-    title: title,
-    description: description,
-    dueDate: dueDate,
-    priority: priority,
+    title,
+    description,
+    dueDate,
+    priority,
     completed: false,
   };
 }
