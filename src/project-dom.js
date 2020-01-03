@@ -44,6 +44,7 @@ function createItems(title, description, dueDate, priority, idOfTodo, completed)
     const descriptionBox = document.createElement('div')
     descriptionBox.textContent = `${description}`
     descriptionBox.classList.add('task')
+    descriptionBox.classList.add('task-desc')
     oneTaskContainer.insertAdjacentElement('afterbegin', descriptionBox)
     
     const titleBox = document.createElement('div')
@@ -73,6 +74,7 @@ function createItems(title, description, dueDate, priority, idOfTodo, completed)
 
     if(completed === true){
         oneTaskContainer.classList.add('completed')
+        priorityBox.style.opacity = 0.5
     }else if(completed === false){
         oneTaskContainer.classList.remove('completed')
     }

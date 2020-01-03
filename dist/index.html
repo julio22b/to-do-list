@@ -44,13 +44,13 @@
         <form action="#" class="my-form" id="items-form">
             <h2>Enter details</h2>
             <label for="title">Title</label>
-            <input id="title" type="text" name="title" >
+            <input id="title" type="text" name="title" maxlength="15">
             
             <label for="description">Description</label>
-            <input id="desc" type="textarea" name="description">
+            <input id="desc" type="text" name="description" maxlength="100">
 
             <label for="duedate">Due</label>
-            <input id="due" type="text" name="due">
+            <input id="due" type="date" name="due">
 
             <p>Choose a priority level</p>
             <div class="radio-buttons">
@@ -72,5 +72,6 @@
         </form>
     </div>
     <script src="main.js"></script>
+    
 </body>
 </html>

@@ -16,6 +16,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "date-fns": "^2.8.1",
     "npm-watch": "^0.6.0"
   }
 }

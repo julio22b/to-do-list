@@ -1,5 +1,6 @@
 import { createProjectBox, createItems } from './project-dom.js'
 import { Project, ToDo } from './new-project.js'
+import { formatDistance, subDays} from 'date-fns'
 
 
 const LOCAL_STORAGE_KEY = 'task.projects'
@@ -8,12 +9,15 @@ const itemsDisplay = document.querySelector('[data-items-display-container]')
 const projectTitle = document.querySelector('[data-project-title]')
 const itemsContainer = document.querySelector('.items')
 const defaultProject = new Project('My Project')
-const sampleTodo = new ToDo('Sample', 'Sample', 'Sample', 'Low')
+const sampleTodo = new ToDo('Sample', 'Sample', 'yyyy-mm-dd', 'Low')
 let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []
 let selectedProjectId = localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_ID)
 
-defaultProject.todos.push(sampleTodo)
-projects.push(defaultProject)
+if(!projects[0]){
+    defaultProject.todos.push(sampleTodo)
+    projects.push(defaultProject)
+}
+
 
 const projectContainer = document.querySelector('#actual-projects')
 projectContainer.addEventListener('click', (e) => {
