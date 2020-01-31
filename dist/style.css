@@ -1,11 +1,11 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
 }
 
-.blanket{
+.blanket {
     position: absolute;
     top: 0;
     right: 0;
@@ -17,21 +17,21 @@
     display: none;
 }
 
-.container{
+.container {
     display: flex;
     justify-content: space-around;
     height: 100vh;
 }
 
-.projects-container{
+.projects-container {
     flex: 1;
-    position: relative; 
-    overflow-y: scroll; 
+    position: relative;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
 }
 
-.projects-container h1{
+.projects-container h1 {
     text-align: center;
     letter-spacing: 3px;
     color: white;
@@ -39,7 +39,7 @@
     margin-bottom: 1em;
 }
 
-.projects-container #new-project{
+.projects-container #new-project {
     border: none;
     background-color: transparent;
     color: rgb(255, 255, 255);
@@ -51,7 +51,7 @@
     height: 10%;
 }
 
-.projects-container div{
+.projects-container div {
     text-align: center;
     font-size: 1.6rem;
     border: none;
@@ -60,18 +60,17 @@
     padding: 1.2em 0;
 }
 
-.projects-container #projects{
+.projects-container #projects {
     margin: 0;
     padding: 1.5em;
     background-color: #4864e6;
-
 }
 
-.project-name{
+.project-name {
     position: relative;
 }
 
-.project-name .delete-project{
+.project-name .delete-project {
     border: none;
     background: transparent;
     color: rgb(214, 79, 79);
@@ -84,32 +83,32 @@
     font-size: 1.5rem;
 }
 
-#actual-projects{
+#actual-projects {
     cursor: pointer;
 }
 
-[data-project-title]{
+[data-project-title] {
     position: relative;
 }
 
-[data-project-title] span{
+[data-project-title] span {
     color: hsl(190, 69%, 90%);
     text-shadow: 2px 2px 2px rgb(39, 39, 39);
     font-size: 3rem;
 }
 
-.to-do-items{
+.to-do-items {
     flex: 2;
     max-width: 66.6%;
 }
 
-.to-do-items h1{
+.to-do-items h1 {
     padding: 1.4em;
     letter-spacing: 3px;
     font-size: 2.5rem;
 }
 
-.to-do-items .todo-head{
+.to-do-items .todo-head {
     display: flex;
     background-color: #4864e6;
     position: relative;
@@ -118,28 +117,7 @@
     font-weight: bold;
 }
 
-.to-do-items .todo-head button {
-    border: none;
-    background: hsl(240, 100%, 98%);
-    position: absolute;
-    bottom: 10%;
-    right: 5%;
-    padding: 0.5em 0.7em;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.to-do-items .todo-head button:hover{
-    background: hsl(190, 100%, 79%);
-    color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 1px black;
-    transition: all 0.5s ease;
-}
-
-.to-do-items .todo-body{
+.to-do-items .todo-body {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: nowrap;
@@ -148,7 +126,7 @@
     margin-bottom: 0.5em;
 }
 
-.to-do-items .todo-body div{
+.to-do-items .todo-body div {
     padding: 1.5em 1em;
     font-size: 1.2rem;
     letter-spacing: 1px;
@@ -158,42 +136,55 @@
     font-size: 1.4em;
 }
 
-.to-do-items .todo-body div:last-child{
+#new-item {
+    border: none;
+    background: hsl(240, 100%, 98%);
+    padding: 0.5em 0.5em;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#new-item:hover {
+    background: #4864e6;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 1px black;
+    transition: all 0.5s ease;
+}
+
+.to-do-items .todo-body div:last-child {
     flex: 1;
 }
 
-.items > div{
+.items > div {
     display: flex;
     position: relative;
     background: hsl(240, 100%, 98%);
     margin: 1em 0;
 }
 
-.items > .completed:after{
+.items > .completed:after {
     position: absolute;
     left: 0;
     top: 50%;
-    content: "";
+    content: '';
     width: 87%;
     display: block;
     outline: 1px solid #4864e6;
 }
 
-
-
-.items .completed{
+.items .completed {
     color: rgba(121, 121, 121, 0.5);
     transition: right 2s linear;
-
 }
 
-.items .completed .edit{
+.items .completed .edit {
     transform: scale(1.4);
     transition: transform 0.3s ease;
-
 }
 
-.items > div > div{
+.items > div > div {
     flex: 2 2 0;
     padding: 1em;
     font-size: 1.2rem;
@@ -203,58 +194,65 @@
     overflow: hidden;
 }
 
-.items > div > div:last-child{
+.items > div > div:last-child {
     flex: 1;
 }
 
+input:required {
+    box-shadow: none;
+}
 
-.my-form{
+input:focus:invalid {
+    box-shadow: 0 0 3px rgb(219, 50, 50);
+}
+
+.my-form {
     display: flex;
     flex-direction: column;
     top: 20%;
     width: 25%;
-
 }
 
-#project-form{
+#project-form {
     flex-direction: row;
     width: 100%;
     padding: 1em 0;
 }
 
-#project-form input{
+#project-form input {
     font-size: 1.2rem;
     padding: 0 0.4em;
 }
 
-.my-form h2{
+.my-form h2 {
     padding: 1.5em;
     border-bottom: #f1f1f1 2px solid;
     color: #4864e6;
 }
 
-.my-form label, #items-form p{
+.my-form label,
+#items-form p {
     padding: 1em;
     font-size: 1.3rem;
 }
 
-.my-form input{
+.my-form input {
     flex: 4;
     border: none;
     border-bottom: 2px solid #f1f1f1;
     background-color: transparent;
 }
 
-.my-form input:focus{
+.my-form input:focus {
     outline: none;
 }
 
-#items-form input:focus{
+#items-form input:focus {
     background-color: #ddd;
     outline: none;
 }
 
-.my-form div{
+.my-form div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -262,7 +260,8 @@
     margin-top: 2.5em;
 }
 
-.my-form .submit, .my-form .submit-items{
+.my-form .submit,
+.my-form .submit-items {
     border: none;
     background-color: #226f54;
     padding: 0.9em;
@@ -275,7 +274,8 @@
     cursor: pointer;
 }
 
-.my-form .cancel, .my-form .cancel-items{
+.my-form .cancel,
+.my-form .cancel-items {
     border: none;
     background-color: rgb(141, 33, 33);
     padding: 0.9em;
@@ -287,15 +287,15 @@
     cursor: pointer;
 }
 
-.my-form .submit:hover{
+.my-form .submit:hover {
     background-color: #4864e6;
 }
 
-.my-form .cancel:hover{
+.my-form .cancel:hover {
     background-color: rgb(219, 50, 50);
 }
 
-#items-form{
+#items-form {
     height: 95vh;
     top: 1em;
     width: 40%;
@@ -306,7 +306,7 @@
     background-color: #ffffff;
 }
 
-#items-form input{
+#items-form input {
     padding: 1em;
     width: 80%;
     margin: 0 auto;
@@ -315,40 +315,41 @@
     font-size: 1.1em;
 }
 
-#items-form .radio-buttons{
+#items-form .radio-buttons {
     margin: 0;
     font-size: 1.2rem;
 }
 
-#items-form div{
+#items-form div {
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-around;   
+    justify-content: space-around;
 }
 
-#items-form div button{
+#items-form div button {
     width: 40%;
 }
 
-#actual-projects{
+#actual-projects {
     border: none;
     margin: 0;
     margin-top: 0.5em;
     padding: 0;
 }
 
-.active-project{
+.active-project {
     transform: scale(1.1);
     background-color: #4864e6;
     color: white;
     font-weight: bold;
 }
 
-.edit-remove-container{
+.edit-remove-container {
     justify-content: space-around;
 }
 
-.edit-remove-container .edit, .edit-remove-container .remove{
+.edit-remove-container .edit,
+.edit-remove-container .remove {
     outline: none;
     cursor: pointer;
     border: none;
@@ -357,22 +358,21 @@
     font-size: 1.4em;
 }
 
-.edit-remove-container .remove{
+.edit-remove-container .remove {
     color: rgb(214, 79, 79);
     font-weight: bold;
     font-size: 1.2em;
 }
 
-.edit-remove-container .edit span{
+.edit-remove-container .edit span {
     background: url(./img/edit.png);
     background-size: contain;
 }
 
-.edit{
+.edit {
     transition: all 0.5s ease;
-
 }
 
-.task desc{
+.task desc {
     max-height: 20vh;
 }

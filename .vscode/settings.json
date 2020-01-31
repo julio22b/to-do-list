@@ -2,5 +2,6 @@
     "editor.formatOnSave": true,
     "prettier.arrowParens": "always",
     "prettier.singleQuote": true,
-    "prettier.trailingComma": "es5"
+    "prettier.printWidth": 100,
+    "prettier.trailingComma": "all"
 }
